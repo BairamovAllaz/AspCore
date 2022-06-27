@@ -36,11 +36,11 @@ public static class Controllerr
         return new User() { Email = email, Password = password, Repeat = repeat };
     }
 
-    public static bool LoginUser(HttpContext context,User user)
+    public static bool LoginUser(HttpContext context,User? user)
     {
         var email = context.Request.Form["email"];
         var password = context.Request.Form["password"];
-        if (user.Email != email || user.Password != password)
+        if (user is null || user.Email != email || user.Password != password)
         {
             return false;
         }
